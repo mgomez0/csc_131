@@ -1,0 +1,24 @@
+{
+  "name": "scrumbags",
+  "version": "1.0.0",
+  "description": "CSC131 ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mgomez0/csc_131.git"
+  },
+  "author": "Michael Gomez, Noah Fields, Taras Yakovchuk-Besarab, Justin Vierstra, Hung Phan, Lan Nguyen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mgomez0/csc_131/issues"
+  },
+  "homepage": "https://github.com/mgomez0/csc_131#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "faker": "^5.1.0"
+  }
+}
