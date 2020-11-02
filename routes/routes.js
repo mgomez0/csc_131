@@ -1,10 +1,8 @@
 // inlcude data file
 const data = require('../data.json')
 
-
 var appRouter = function (app) 
 {
-
 	app.get("/", function (req, res) 
 	{
     		res.status(200).send({ message: 'Welcome to our restful API' });
@@ -77,8 +75,6 @@ var appRouter = function (app)
 		{
 			res.send(id);
 		}
-
-
 	});
 }
 
