@@ -1,7 +1,6 @@
 // inlcude data file
 const data = require('../data.json')
 
-var faker = require("faker");
 
 var appRouter = function (app) 
 {
@@ -18,11 +17,11 @@ var appRouter = function (app)
 	{
 		if(data == null)
 		{
-				res.send("File with awards is not found!");
+			res.send("File with awards is not found!");
 		}
 		else
 		{
-				res.send(data);
+			res.send(data);
 		}
 	});
 
