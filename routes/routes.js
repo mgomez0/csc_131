@@ -1,3 +1,6 @@
+// inlcude data file
+const data = require('../data.json')
+
 var faker = require("faker");
 
 var appRouter = function (app) {
@@ -39,6 +42,34 @@ var appRouter = function (app) {
    }
 
  });
+
+
+	// adding get requests
+	
+	app.get("/api/awards", function (req, res)
+	{
+		if(data == null)
+		{
+				res.send("File with awards is not found!");
+		}
+		else
+		{
+				res.send(data);
+		}
+	});
+
+	app.get("/api/awards/:id", function (req, res)
+	{
+		const id = data[req.params.id];
+		if(id == null)
+		{
+			res.send("The award is not found!");
+		}
+		else
+		{
+			res.send(id);
+		}
+	});
 }
 
 module.exports = appRouter;
