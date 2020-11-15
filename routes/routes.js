@@ -68,8 +68,8 @@ var appRouter = function (app) {
 //   });
 
 
-  // this route returns the winner of best picture based on year input
-  // singleton API call
+  // this route returns the nominees of best picture based on year input
+  // collection API call
   
   app.get("/api/movies/categories/bestpicture/:year", function (req,res) {
     const year = req.params.year;
@@ -78,13 +78,36 @@ var appRouter = function (app) {
       res.send("The year is not found!")
     } else {
       for(key in data){
-        if (data[key].category == "BEST PICTURE" && data[key].year == year && data[key].winner == true){
+        if (data[key].category == "BEST PICTURE" && data[key].year == year){
           ret_collection.push(data[key].entity);
         }
       }
       res.send(ret_collection);
     }
     
+  });
+
+  // this route returns the winner of best picture based on year input
+  // singleton API call
+
+  app.get("/api/movies/categories/bestpicture/:year/winner", function (req,res) {
+    const year = req.params.year;
+    ret_winner = [];
+    if(year === null) {
+      res.send("The year is not found!");
+    } else {
+        for(key in data) {
+          if(data[key].category == "BEST PICTURE" && data[key].year == year && data[key].winner == true) {
+	    ret_winner.push(data[key].entity);
+          }
+        }
+      }
+    if(ret_winner === null) {
+      res.send("No winner found for this year!");
+    } else {
+      res.send(ret_winner);
+      }
+
   });
 
   // adding get requests
