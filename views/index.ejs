@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/index.css" />
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <div class="logo">
+          <h4>SCRUMBAGS</h4>
+        </div>
+        <ul class="nav-links">
+          <h4>Current Year: 1996</h4>
+          <h4>Category: Best Picture</h4>
+        </ul>
+      </nav>
+    </header>
+    <container class="search-results">
+      <section class="winner">
+        <img src="img/300.jpg" />
+        <div class="winner banner">And the winner is...!</div>
+      </section>
+      <section class="nominees">
+        <div class="top">
+          <img src="img/12_monkeys.jpg" />
+          <img src="img/forrest_gump.jpg" />
+          <img src="img/joker.jpg" />
+          <img src="img/toystory4.jpg" />
+        </div>
+        <div class="bottom">
+          <img src="img/space_odyssey.jpg" />
+          <img src="img/1917.jpg" />
+          <img src="img/braveheart.jpg" />
+          <img src="img/300.jpg" />
+        </div>
+        <div class="search-fields">
+          <form id="search-params">
+            <label for="year">Year:</label><br />
+            <input type="text" id="year" name="year" /><br />
+            <label for="category">Category:</label><br />
+            <input type="text" id="category" name="category" /><br />
+            <input type="submit" value="Submit" />
+          </form>
+        </div>
+      </section>
+    </container>
+    <script type="text/javascript" src="js/search.js"></script>
+  </body>
+</html>

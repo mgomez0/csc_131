@@ -2,10 +2,15 @@
 const data = require("../data.json");
 var path = require("path");
 
+
+
+
+
 // landing page
 var appRouter = function (app) {
+  
   app.get("/", function (req, res) {
-    res.sendFile(path.join(__dirname, "../static", "index.html"));
+    res.render(path.join(__dirname, "../views", "index"));    
   });
 
  
