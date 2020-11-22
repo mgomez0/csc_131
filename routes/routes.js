@@ -156,17 +156,7 @@ var appRouter = function (app) {
 // 		// there is no winner but there is year
 // 		else if(winner == 0 && year != 0) {
 // 			let convert_year = parseInt(year);
-// 			if(Number.isInteger(convert_year)) {
-// 				result_arr = data.filter(function(item) {
-// 					if(item.year == year) {
-// 						return item;	
-// 					}
-// 				});
-// 			} else {
-// 				result_arr = data;
-// 			}
-// 			return result_arr;
-// 		} 
+// 			if(Number.isInteger(converfunction
 // 		// there is a winner and year
 // 		else if(winner != 0 && year != 0) {
 // 			let convert_year = parseInt(year);
@@ -227,6 +217,27 @@ app.get("/api/awards", function(req, res) {
   
   res.send(category_response);
   
+});
+
+// api the search awards in year range
+app.get("/api/awards/year", function(req,res) {
+  let year_range_awards = [];
+  
+  let year_from = req.query.from;
+  let year_to = req.query.to;
+
+  year_range_awards = data.filter(function(item) {
+    if(item.year >= year_from && item.year <= year_to)
+    {
+      return item;
+    }
+
+  });
+  
+  if(year_range_awards.length == 0)
+    res.send("Invalid range!");
+  else
+    res.send(year_range_awards);
 });
 
 };
