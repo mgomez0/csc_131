@@ -3,36 +3,42 @@ var form = document.getElementById("search-params");
 form.addEventListener("submit", function (event) {
   // clear existing images
   document.getElementById("top").innerHTML = "";
+  document.getElementById("winner-img").innerHTML = "";
   var headers = new Headers();
   // Tell the server we want JSON back
   headers.set("Accept", "application/json");
   let year = form.year.value;
   let category = form.category.value;
   let url = "/api/awards?year=" + year + "&" + "category=" + category;
+  let titles = new Map();
   var responsePromise = fetch(url);
   responsePromise
-    // 3.1 Convert the response into JSON-JS object.
+    // Convert the response into JSON-JS object.
     .then(function (response) {
       return response.json();
     })
-    // 3.2 Extract the movie Titles
+    // Extract the movie Titles and map them to a boolean that represents if they are an Oscar winner
     .then(function (movies) {
-      let titles = [];
       movies.forEach((movie) => {
-        titles.push(movie.entity);
+        titles.set(movie.entity, movie.winner);
       });
+      // "The Fellowship of the Ring" : "true"
       return titles;
     })
 
-    // 3.3 Generate the URLs for every OMDB API call
+    // Generate the URLs for every OMDB API call
     .then(function (titles) {
-      let key = "&apikey=dc6d017";
+      let api_key = "&apikey=dc6d017";
       let url = "http://www.omdbapi.com/?t=";
-      let urls = [];
-      for (let i = 0; i < titles.length; i++) {
-        urls.push(url + titles[i] + key);
-      }
-      let requests = urls.map((url) => fetch(url));
+      let urls = new Map();
+      titles.forEach((values, keys) => {
+        // "omdbapi_url.com":"true"
+        urls.set(url + keys + api_key, values);
+      });
+      let requests = Array.from(urls.keys()).map((request_url) =>
+        fetch(request_url)
+      );
+      // let requests = urls.map((url) => fetch(url));
       return Promise.all(requests).then((responses) => {
         // all responses are resolved succesfully
         return responses;
@@ -42,16 +48,21 @@ form.addEventListener("submit", function (event) {
     .then((responses) => Promise.all(responses.map((r) => r.json())))
     // all JSON answers are parsed: "movie_data" is the array of them
     .then(function (movie_data) {
-      let poster_urls = [];
+      let poster_urls = new Map();
       for (let i = 0; i < movie_data.length; i++) {
-        poster_urls.push(movie_data[i].Poster);
+        // map "Title":"Poster_URL"
+        poster_urls.set(movie_data[i].Title, movie_data[i].Poster);
       }
 
       //add each image to the DOM
-      poster_urls.forEach((url) => {
+      poster_urls.forEach((url, title) => {
         let image = document.createElement("img");
         image.src = url;
-        document.querySelector(".nominees .top").appendChild(image);
+        if (titles.get(title) == true) {
+          document.querySelector(".winner .winner-img").appendChild(image);
+        } else {
+          document.querySelector(".nominees .top").appendChild(image);
+        }
       });
     });
 

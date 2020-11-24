@@ -60,7 +60,7 @@ nav {
   margin: 10px;
 }
 
-.winner img {
+.winner .winner-img img {
   display: block;
   width: 100%;
   max-width: 250px; /*actual image width*/
@@ -87,14 +87,6 @@ nav {
   margin: auto;
   text-align: center;
 }
-
-/* div.top {
-  
-}
-
-div.bottom{
- 
-} */
 
 div.search-fields{
   padding: 15px;
