@@ -9,6 +9,8 @@ form.addEventListener("submit", function (event) {
   headers.set("Accept", "application/json");
   let year = form.year.value;
   let category = form.category.value;
+  document.getElementById("current-year").innerHTML = "Year: " + year;
+  document.getElementById("current-category").innerHTML = "Category: " + category;
   let url = "/api/awards?year=" + year + "&" + "category=" + category;
   let titles = new Map();
   var responsePromise = fetch(url);
