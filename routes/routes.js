@@ -219,25 +219,41 @@ app.get("/api/awards", function(req, res) {
   
 });
 
-// api the search awards in year range
+// api the search awards in any category and year range
 app.get("/api/awards/year", function(req,res) {
   let year_range_awards = [];
-  
+  let awards_entities = [];
+
+  let category_search;
+  if(req.query.category != null)
+  {
+    category_search = (req.query.category).toUpperCase();
+  }
+
   let year_from = req.query.from;
   let year_to = req.query.to;
 
   year_range_awards = data.filter(function(item) {
     if(item.year >= year_from && item.year <= year_to)
     {
-      return item;
+      if(!category_search) {
+        return item;
+      }
+      else if(item.category == category_search)
+      {
+        return item;
+      }
     }
-
   });
-  
-  if(year_range_awards.length == 0)
-    res.send("Invalid range!");
-  else
-    res.send(year_range_awards);
+
+
+  if(year_range_awards.length == 0) {
+    res.send("Invalid range or category!");
+  }
+  else {
+    awards_entities = year_range_awards.map(i => i.entity);
+    res.send(awards_entities);
+  }
 });
 
 };
