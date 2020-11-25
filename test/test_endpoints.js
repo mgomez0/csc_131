@@ -5,7 +5,7 @@ var should = chai.should();
 
 chai.use(chaiHttp);
 
-describe("Test enpoints", function() {
+describe("Test endpoints", function() {
 	
 	it("it should return homepage", function(done) {
 		chai.request("http://localhost:3000")
