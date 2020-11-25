@@ -202,21 +202,42 @@ var appRouter = function (app) {
   
 // };
 
-//http://servername/movies/search?year=1997&category=song
-
+// search for award year, award category or both 
 app.get("/api/awards", function(req, res) {
 	category_response = [];
   
-    let query_cat = (req.query.category).toUpperCase();
+    let query_cat = req.query.category;
     let query_year = req.query.year;
     
-    category_response = data.filter(function(item) {
-      if(item.category == query_cat && item.year == query_year)
-        return item;
-    });
-  
-  res.send(category_response);
-  
+    if(query_year == null && query_cat == null) {
+      res.send("No parameters found!");
+    }
+    else {
+      if(query_cat != null && query_year != null) {
+        category_response = data.filter(function(item) {
+          if(item.category == (query_cat).toUpperCase() && item.year == query_year)
+            return item;
+        });
+      }
+      else if(query_cat != null && query_year == null) {
+        category_response = data.filter(function(item) {
+          if(item.category == (query_cat).toUpperCase())
+            return item;
+        });
+      }
+      else if(query_cat == null && query_year !=null) {
+        category_response = data.filter(function(item) {
+          if(item.year == query_year)
+            return item;
+        });
+      }
+      if(category_response.length == 0) { 
+        res.send("No data found!");
+      }
+      else {
+        res.send(category_response);
+      }
+    }
 });
 
 // api the search awards in any category and year range
