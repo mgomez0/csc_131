@@ -1,14 +1,18 @@
 // inlcude data file
+
 const data = require("../data.json");
 var path = require("path");
 
 // landing page
+
 var appRouter = function (app) {
   app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, "../static", "index.html"));
   });
 
   // return movie data by id
+  // the function enables us to retrieve a single award(JSON object) from the data file(array of JSON objects)
+
   app.get("/api/awards/list/:id", function (req, res) {
     let id = data[req.params.id - 1];
     if (id == null) {
@@ -18,7 +22,9 @@ var appRouter = function (app) {
     }
   });
 
-  // return a list of award categories 
+  // return a list of award categories
+  // the function retrieves awards categories from data file and returns the array of categories with no duplicates
+
   app.get("/api/award_categories", function (req, res) {
     let categories = [];
     categories = [...new Set(data.map(i => i.category))];
@@ -67,7 +73,8 @@ var appRouter = function (app) {
 
   });
 
-  // search for award year, award category or both 
+  // api call to search for award year, award category or both 
+  // this function enables to take search sparameteres from the user such as year, category, or both and search the data file to return the aray of JSON objects that satisfy search criteria entered by the user
 
   app.get("/api/awards", function (req, res) {
     category_response = [];
@@ -107,6 +114,7 @@ var appRouter = function (app) {
   });
 
   // api the search awards in any category and year range
+  // this function enables to take search parameteres from the user such as range of years and/or category and search the data file to return array of entities that satisfy search criteria entered by the user
 
   app.get("/api/awards/year", function (req, res) {
     let results = [];
