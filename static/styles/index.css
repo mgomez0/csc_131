@@ -1,0 +1,105 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #eae1eb;
+  font-family: "Franklin Gothic Medium";
+  margin: 0;
+}
+
+nav {
+  background-color: #231f20;
+  border-bottom: 2px solid white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 8vh;
+}
+
+.logo {
+  font-size: 20px;
+  color: rgb(238, 229, 229);
+  letter-spacing: 3px;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: space-around;
+  width: 30%;
+  color: rgb(238, 229, 229);
+  text-decoration: none;
+  letter-spacing: 2px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.nav-links li {
+  list-style: none;
+}
+
+.nav-links input[type="text"] {
+  float: right;
+  border: none;
+  font-size: 14px;
+  transition: transform 0.5s ease-in;
+}
+
+.search-results {
+  display: flex;
+}
+
+
+.winner {
+  padding: 35px;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  margin: 10px;
+}
+
+.winner .winner-img img {
+  display: block;
+  width: 100%;
+  max-width: 250px; /*actual image width*/
+  max-height: 400px;
+  height: auto; /* maintain aspect ratio*/
+  margin: auto; /*optional centering of image*/
+  border-radius: 25px;
+  border: solid 2px;
+}
+.winner div {
+  margin: auto; /*optional centering of image*/
+  text-align: center;
+}
+
+.nominees {
+  padding: 35px;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  margin: 0;
+}
+
+.nominees div{
+  margin: auto;
+  text-align: center;
+}
+
+div.search-fields{
+  padding: 15px;
+  margin: 0;
+}
+
+
+.nominees img {
+  display: inline-block;
+  width: 100%;
+  width: 100px; /*actual image width*/
+  height: 175px;
+  margin: 10px;
+  border-radius: 10px;
+  border: solid 2px;
+}
