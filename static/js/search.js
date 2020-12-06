@@ -31,7 +31,7 @@ form.addEventListener("submit", function (event) {
     // Generate the URLs for every OMDB API call
     .then(function (titles) {
       let api_key = "&apikey=dc6d017";
-      let url = "http://www.omdbapi.com/?t=";
+      let url = "https://www.omdbapi.com/?t=";
       let urls = new Map();
       titles.forEach((values, keys) => {
         // "omdbapi_url.com":"true"
